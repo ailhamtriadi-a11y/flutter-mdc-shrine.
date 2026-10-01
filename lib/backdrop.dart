@@ -101,7 +101,7 @@ class _BackdropTitle extends AnimatedWidget {
           width: 72.0,
           child: IconButton(
             padding: const EdgeInsets.only(right: 8.0),
-            onPressed: this.onPress,
+            onPressed: onPress,
             icon: Stack(children: <Widget>[
               Opacity(
                 opacity: animation.value,
@@ -253,7 +253,7 @@ title: _BackdropTitle(
       actions: <Widget>[
         // TODO: Add shortcut to login screen from trailing icons (104)
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.search,
             semanticLabel: 'login', // New code
           ),
@@ -262,7 +262,7 @@ title: _BackdropTitle(
           },
         ),
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.tune,
             semanticLabel: 'login', // New code
           ),
