@@ -13,10 +13,75 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
-
+import 'supplemental/cut_corners_border.dart';
 import 'home.dart';
 import 'login.dart';
 
+const Color kShrinePurple = Color(0xFF5D1049);
+const Color kShrineErrorRed = Color(0xFFC5032B);
+const Color kShrineSurfaceWhite = Color(0xFFFFFBFA);
+const Color kShrineBrown900 = Color(0xFF442B2D);
+const Color kShrinePink100 = Color(0xFFFFE0E0);
+
+final ThemeData _kShrineTheme = _buildShrineTheme();
+
+
+ThemeData _buildShrineTheme() {
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: kShrinePurple,
+      secondary: kShrinePurple,
+      error: kShrineErrorRed,
+    ),
+    scaffoldBackgroundColor: kShrineSurfaceWhite,
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: kShrinePurple,
+    ),
+    appBarTheme: const AppBarTheme(
+      foregroundColor: kShrineBrown900,
+      backgroundColor: kShrinePink100,
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: CutCornersBorder(),
+      focusedBorder: CutCornersBorder(
+        borderSide: BorderSide(
+          width: 2.0,
+          color: kShrinePurple,
+        ),
+      ),
+      floatingLabelStyle: TextStyle(
+        color: kShrinePurple,
+      ),
+    ),
+    textTheme: _buildShrineTextTheme(base.textTheme),
+  );
+}
+
+TextTheme _buildShrineTextTheme(TextTheme base) {
+  return base
+      .copyWith(
+        headlineSmall: base.headlineSmall!.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        titleLarge: base.titleLarge!.copyWith(
+          fontSize: 18.0,
+        ),
+        bodySmall: base.bodySmall!.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+        bodyLarge: base.bodyLarge!.copyWith(
+          fontWeight: FontWeight.w500,
+          fontSize: 16.0,
+        ),
+      )
+      .apply(
+        fontFamily: 'Rubik',
+        displayColor: kShrineBrown900,
+        bodyColor: kShrineBrown900,
+      );
+}
 // TODO: Convert ShrineApp to stateful widget (104)
 class ShrineApp extends StatelessWidget {
   const ShrineApp({Key? key}) : super(key: key);
@@ -35,7 +100,7 @@ class ShrineApp extends StatelessWidget {
         // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
       // TODO: Customize the theme (103)
-      theme: ThemeData.light(useMaterial3: true),
+      theme: _kShrineTheme,
     );
   }
 }
